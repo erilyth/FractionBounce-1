@@ -38,7 +38,7 @@ function component(width,height,color,x,y,type){
 	this.width=width;
 	this.height=height;
 	this.speedX=0;
-	this.speedY=0;
+	this.speedY=0.4;
 	this.x=x;
 	this.y=y;
 	this.update = function(){
@@ -67,13 +67,12 @@ function component(width,height,color,x,y,type){
 function updateGameArea(){
 	myGameArea.clear();
 	ball.speedX=0;
-	ball.speedY=0;
     if (myGameArea.keys && myGameArea.keys[37]) {ball.speedX = -1; }
     if (myGameArea.keys && myGameArea.keys[39]) {ball.speedX = 1; }
     if (ball.x<30) {ball.x=30;}
     if (ball.y<15) {ball.y=15;}
     if (ball.x>276) {ball.x=276;};
-    if (ball.y>119) {ball.y=119}
+    if (ball.y>119) {myGameArea.stop()}
 	ball.newPos();
 	floor.update();
 	ball.update();
