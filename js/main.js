@@ -3,9 +3,9 @@ var Cwidth,Cheight;
 
 function startGame() {
 
-    ball=new component(10,40,"green",100,100,"circle");
+    ball=new component(10,40,"green",100,23,"circle");
     myGameArea.start();
-    floor=new component(Cwidth,10,"black",0,130,"rectangle");
+    floor=new component(Cwidth-1035,10,"black",23,130,"rectangle");
 }
 var myGameArea = {
     canvas : document.createElement("canvas"),
@@ -58,21 +58,7 @@ function component(width,height,color,x,y,type){
 		}
 			
 	}
-	this.crashwith=function(otherobj){
-		var myleft = this.x;
-        var myright = this.x + (this.width);
-        var mytop = this.y;
-        var mybottom = this.y + (this.height);
-        var otherleft = otherobj.x;
-        var otherright = otherobj.x + (otherobj.width);
-        var othertop = otherobj.y;
-        var otherbottom = otherobj.y + (otherobj.height);
-        var crash = true;
-        if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
-            crash = false;
-        }
-        return crash;
-	}
+	
 	this.newPos = function(){
 		this.x += this.speedX;
 		this.y += this.speedY;
@@ -84,11 +70,9 @@ function updateGameArea(){
 	ball.speedY=0;
     if (myGameArea.keys && myGameArea.keys[37]) {ball.speedX = -1; }
     if (myGameArea.keys && myGameArea.keys[39]) {ball.speedX = 1; }
-    if (myGameArea.keys && myGameArea.keys[38]) {ball.speedY = -1; }
-    if (myGameArea.keys && myGameArea.keys[40]) {ball.speedY = 1; }
-    if (ball.x<15) {ball.x=15;}
+    if (ball.x<30) {ball.x=30;}
     if (ball.y<15) {ball.y=15;}
-    if (ball.x>286) {ball.x=286;};
+    if (ball.x>276) {ball.x=276;};
     if (ball.y>119) {ball.y=119}
 	ball.newPos();
 	floor.update();
